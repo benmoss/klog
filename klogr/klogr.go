@@ -134,6 +134,9 @@ func flatten(kvList ...interface{}) string {
 }
 
 func pretty(value interface{}) string {
+	if err, ok := value.(error); ok {
+		return err.Error()
+	}
 	jb, _ := json.Marshal(value)
 	return string(jb)
 }
